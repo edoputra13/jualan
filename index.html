@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DEEPA STORE</title>
+  <title>Galeri Interaktif dengan Jam</title>
   <style>
+    /* Background untuk seluruh halaman */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -14,6 +15,17 @@
       background-attachment: fixed;
       color: white;
     }
+
+    /* Overlay agar teks terbaca di atas background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    /* Fitur jam di pojok kanan atas */
     #clock {
       position: fixed;
       top: 10px;
@@ -27,13 +39,28 @@
       font-family: 'Courier New', monospace;
     }
 
-    header {
-      background-color: #333;
+    /* Header dengan foto */
+    .photo-header {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      padding: 5px;
+    }
+
+    .header-text {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px 40px;
+      border-radius: 10px;
       text-align: center;
     }
 
+    /* Galeri */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -48,7 +75,7 @@
       margin: 10px;
       cursor: pointer;
       border: 4px solid white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
       transition: 0.3s;
     }
 
@@ -91,36 +118,45 @@
       max-height: 80%;
     }
 
-    .modal:active {
-      display: none;
-    }
-
     footer {
       text-align: center;
-      background: #333;
+      background: rgba(0,0,0,0.7);
       color: white;
       padding: 15px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>DEEPA STORE</h1>
-    <p>Maintenance Testimoni</p>
-  </header>
 
+  <!-- Fitur Jam -->
+  <div id="clock"></div>
+
+  <!-- HEADER -->
+  <div class="photo-header">
+    <div class="header-text">
+      <h1>📷 Selamat Datang di Galeri Interaktif 📷</h1>
+      <p>Latar belakang website menggunakan foto, dengan fitur jam real-time</p>
+    </div>
+  </div>
+
+  <!-- GALERI -->
   <div class="gallery" id="gallery"></div>
 
+  <!-- Tombol -->
   <button class="load-more" onclick="loadMore()">Tampilkan Lebih Banyak</button>
 
-  <!-- Modal -->
+  <!-- MODAL UNTUK GAMBAR -->
   <div class="modal" id="modal" onclick="closeModal()">
     <img id="modal-img" src="" alt="Perbesar Gambar">
   </div>
 
+  <!-- FOOTER -->
   <footer>
-    &copy; 2025 DEEPA STORE
+    &copy; 2025 Galeri Interaktif. Dibuat oleh [Nama Kamu]
   </footer>
+
+  <!-- SCRIPT -->
   <script>
     // JAM DIGITAL
     function updateClock() {
@@ -133,18 +169,17 @@
     updateClock();
     setInterval(updateClock, 1000);
 
-  <script>
+    // GALERI
     const gallery = document.getElementById('gallery');
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
     let photoCount = 0;
 
-    // Fungsi untuk menambahkan gambar ke galeri
     function loadMore() {
       for (let i = 0; i < 6; i++) {
         const img = document.createElement('img');
-        const keywordList = ["nature", "city", "beach", "mountain", "forest", "travel"];
-        const keyword = keywordList[(photoCount + i) % keywordList.length];
+        const keywords = ["nature", "city", "travel", "beach", "mountain", "forest"];
+        const keyword = keywords[(photoCount + i) % keywords.length];
         img.src = `https://source.unsplash.com/random/300x200?sig=${photoCount + i}&${keyword}`;
         img.alt = `Foto ${photoCount + i}`;
         img.onclick = () => openModal(img.src);
@@ -162,8 +197,8 @@
       modal.style.display = 'none';
     }
 
-    // Load pertama kali
     loadMore();
   </script>
+
 </body>
 </html>
