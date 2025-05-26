@@ -14,6 +14,18 @@
       background-attachment: fixed;
       color: white;
     }
+    #clock {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      font-size: 18px;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px 15px;
+      border-radius: 8px;
+      z-index: 999;
+      font-family: 'Courier New', monospace;
+    }
 
     header {
       background-color: #333;
@@ -109,6 +121,17 @@
   <footer>
     &copy; 2025 DEEPA STORE
   </footer>
+  <script>
+    // JAM DIGITAL
+    function updateClock() {
+      const now = new Date();
+      const jam = String(now.getHours()).padStart(2, '0');
+      const menit = String(now.getMinutes()).padStart(2, '0');
+      const detik = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${jam}:${menit}:${detik}`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
 
   <script>
     const gallery = document.getElementById('gallery');
