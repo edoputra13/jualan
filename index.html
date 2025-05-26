@@ -1,72 +1,144 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Foto Saya</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            margin: 0;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 20px;
-            justify-content: center;
-        }
-        .gallery img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-            margin: 10px;
-            border: 4px solid #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
-        }
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeri Foto Interaktif</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      margin: 10px;
+      cursor: pointer;
+      border: 4px solid white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .load-more {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .load-more:hover {
+      background-color: #555;
+    }
+
+    /* Modal Lightbox */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal img {
+      display: block;
+      margin: 5% auto;
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .modal:active {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      background: #333;
+      color: white;
+      padding: 15px;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>Galeri Interaktif</h1>
+    <p>Klik gambar untuk memperbesar</p>
+  </header>
 
-    <header>
-        <h1>Galeri Foto Saya</h1>
-        <p>Kumpulan kenangan dalam gambar</p>
-    </header>
+  <div class="gallery" id="gallery"></div>
 
-    <div class="gallery">
-        <img src="https://source.unsplash.com/random/300x200?nature" alt="Foto Alam">
-        <img src="https://source.unsplash.com/random/300x200?city" alt="Foto Kota">
-        <img src="https://source.unsplash.com/random/300x200?travel" alt="Foto Perjalanan">
-        <img src="https://source.unsplash.com/random/300x200?beach" alt="Foto Pantai">
-        <img src="https://source.unsplash.com/random/300x200?forest" alt="Foto Hutan">
-        <img src="https://source.unsplash.com/random/300x200?mountain" alt="Foto Gunung">
-    </div>
+  <button class="load-more" onclick="loadMore()">Tampilkan Lebih Banyak</button>
 
-    <footer>
-        &copy; 2025 Galeri Pribadi. Dibuat dengan ❤️ oleh [Nama Kamu]
-    </footer>
+  <!-- Modal -->
+  <div class="modal" id="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Perbesar Gambar">
+  </div>
 
+  <footer>
+    &copy; 2025 Galeri Interaktif. Dibuat oleh [Nama Kamu]
+  </footer>
+
+  <script>
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    let photoCount = 0;
+
+    // Fungsi untuk menambahkan gambar ke galeri
+    function loadMore() {
+      for (let i = 0; i < 6; i++) {
+        const img = document.createElement('img');
+        const keywordList = ["nature", "city", "beach", "mountain", "forest", "travel"];
+        const keyword = keywordList[(photoCount + i) % keywordList.length];
+        img.src = `https://source.unsplash.com/random/300x200?sig=${photoCount + i}&${keyword}`;
+        img.alt = `Foto ${photoCount + i}`;
+        img.onclick = () => openModal(img.src);
+        gallery.appendChild(img);
+      }
+      photoCount += 6;
+    }
+
+    function openModal(src) {
+      modalImg.src = src;
+      modal.style.display = 'block';
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // Load pertama kali
+    loadMore();
+  </script>
 </body>
 </html>
- 
+
