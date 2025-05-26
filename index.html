@@ -3,36 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galeri dengan Header GIF</title>
+  <title>Galeri Foto Interaktif</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
       margin: 0;
-      background-color: #f5f5f5;
+      padding: 0;
     }
 
-    /* Header GIF */
-    .gif-header {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      background-image: url('https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    header {
+      background-color: #333;
       color: white;
-    }
-
-    .header-text {
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 20px 40px;
-      border-radius: 10px;
+      padding: 20px;
       text-align: center;
     }
 
-    /* Galeri Foto */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -55,7 +41,6 @@
       transform: scale(1.05);
     }
 
-    /* Tombol */
     .load-more {
       display: block;
       margin: 20px auto;
@@ -91,52 +76,49 @@
       max-height: 80%;
     }
 
+    .modal:active {
+      display: none;
+    }
+
     footer {
       text-align: center;
       background: #333;
       color: white;
       padding: 15px;
-      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Galeri Interaktif</h1>
+    <p>Klik gambar untuk memperbesar</p>
+  </header>
 
-  <!-- HEADER GIF -->
-  <div class="gif-header">
-    <div class="header-text">
-      <h1>🌟 Selamat Datang di Galeri Interaktif 🌟</h1>
-      <p>Gambar latar belakang dalam format GIF</p>
-    </div>
-  </div>
-
-  <!-- GALERI FOTO -->
   <div class="gallery" id="gallery"></div>
 
   <button class="load-more" onclick="loadMore()">Tampilkan Lebih Banyak</button>
 
-  <!-- MODAL UNTUK MEMPERBESAR GAMBAR -->
+  <!-- Modal -->
   <div class="modal" id="modal" onclick="closeModal()">
     <img id="modal-img" src="" alt="Perbesar Gambar">
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    &copy; 2025 Galeri GIF Interaktif. Dibuat dengan ❤️ oleh [Nama Kamu]
+    &copy; 2025 Galeri Interaktif. Dibuat oleh [Nama Kamu]
   </footer>
 
-  <!-- SCRIPT GALERI & LIGHTBOX -->
   <script>
     const gallery = document.getElementById('gallery');
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
     let photoCount = 0;
 
+    // Fungsi untuk menambahkan gambar ke galeri
     function loadMore() {
       for (let i = 0; i < 6; i++) {
         const img = document.createElement('img');
-        const keywords = ["nature", "city", "travel", "beach", "mountain", "forest"];
-        const keyword = keywords[(photoCount + i) % keywords.length];
+        const keywordList = ["nature", "city", "beach", "mountain", "forest", "travel"];
+        const keyword = keywordList[(photoCount + i) % keywordList.length];
         img.src = `https://source.unsplash.com/random/300x200?sig=${photoCount + i}&${keyword}`;
         img.alt = `Foto ${photoCount + i}`;
         img.onclick = () => openModal(img.src);
@@ -154,7 +136,7 @@
       modal.style.display = 'none';
     }
 
-    // Load awal
+    // Load pertama kali
     loadMore();
   </script>
 </body>
