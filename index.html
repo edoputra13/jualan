@@ -2,73 +2,51 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galeri Interaktif Lengkap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri dengan Header Running Vertikal</title>
   <style>
-    /* Background seluruh halaman */
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      background-color: #111;
       color: white;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: -1;
-    }
-
-    /* Jam digital */
-    #clock {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      font-size: 18px;
-      color: white;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 10px 15px;
-      border-radius: 8px;
-      z-index: 999;
-      font-family: 'Courier New', monospace;
-    }
-
-    /* Header foto + teks */
-    .photo-header {
+    /* HEADER BERJALAN VERTIKAL */
+    .header-container {
       position: relative;
-      width: 100%;
-      height: 150px;
-      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-position: center;
+      height: 100px;
+      overflow: hidden;
+      background: linear-gradient(to right, #222, #444);
       display: flex;
+      align-items: center;
       justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 15px;
-      color: white;
     }
 
-    .header-text {
+    .vertical-run {
       position: absolute;
-      bottom: 15px;
-      left: 30px;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-align: left;
+      animation: scroll-up 10s linear infinite;
     }
 
-    /* Galeri */
+    @keyframes scroll-up {
+      0% { top: 100%; }
+      100% { top: -100%; }
+    }
+
+    .vertical-run p {
+      margin: 0;
+      padding: 5px 20px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    /* GALERI */
     .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 20px;
+      padding: 30px;
+      background-color: #222;
     }
 
     .gallery img {
@@ -76,174 +54,50 @@
       height: 200px;
       object-fit: cover;
       margin: 10px;
-      cursor: pointer;
-      border: 4px solid white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-      transition: 0.3s;
+      border: 4px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      transition: transform 0.3s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.05);
     }
 
-    .load-more {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #333;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 5px;
-    }
-
-    .load-more:hover {
-      background-color: #555;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    .modal img {
-      display: block;
-      margin: 5% auto;
-      max-width: 90%;
-      max-height: 80%;
-    }
-
-    /* Running text ke atas */
-    .vertical-marquee {
-      position: relative;
-      height: 60px;
-      overflow: hidden;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      font-size: 16px;
-      line-height: 30px;
-      padding-left: 20px;
-    }
-
-    .scrolling-text {
-      position: absolute;
-      animation: scroll-up 10s linear infinite;
-    }
-
-    @keyframes scroll-up {
-      0% {
-        top: 100%;
-      }
-      100% {
-        top: -100%;
-      }
-    }
-
-    /* Footer penuh */
+    /* FOOTER */
     footer {
-      width: 100%;
-      margin: 0;
-      padding: 15px;
-      background: rgba(0,0,0,0.7);
-      color: white;
       text-align: center;
-      box-sizing: border-box;
-      position: relative;
-      left: 0;
+      padding: 20px;
+      background: #333;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
-  <!-- JAM DIGITAL -->
-  <div id="clock"></div>
-
-  <!-- HEADER FOTO -->
-  <div class="photo-header">
-    <div class="header-text">
-      <h1>📷 Galeri Interaktif</h1>
-      <p>Teks menyesuaikan posisi foto header</p>
+  <!-- HEADER BERJALAN -->
+  <div class="header-container">
+    <div class="vertical-run">
+      <p>📢 Selamat datang di Galeri Foto Lokal!</p>
+      <p>🖼️ Foto diambil dari folder lokal /images/</p>
+      <p>📂 Tambahkan foto baru hanya dengan menyimpan ke folder</p>
+      <p>🎉 Website sederhana, cepat, dan bisa offline</p>
     </div>
   </div>
 
   <!-- GALERI -->
-  <div class="gallery" id="gallery"></div>
-
-  <!-- TOMBOL -->
-  <button class="load-more" onclick="loadMore()">Tampilkan Lebih Banyak</button>
-
-  <!-- MODAL -->
-  <div class="modal" id="modal" onclick="closeModal()">
-    <img id="modal-img" src="" alt="Perbesar Gambar">
-  </div>
-
-  <!-- RUNNING TEXT VERTIKAL -->
-  <div class="vertical-marquee">
-    <div class="scrolling-text">
-      <p>📢 Selamat datang di Galeri Interaktif!</p>
-      <p>🖼️ Klik gambar untuk memperbesar.</p>
-      <p>🕒 Jam real-time di pojok atas kanan.</p>
-      <p>🎉 Nikmati koleksi gambar yang terus bertambah!</p>
-    </div>
+  <div class="gallery">
+    <img src="images/foto1.jpg" alt="Foto 1" />
+    <img src="images/foto2.jpg" alt="Foto 2" />
+    <img src="images/foto3.jpg" alt="Foto 3" />
+    <img src="images/foto4.jpg" alt="Foto 4" />
+    <img src="images/foto5.jpg" alt="Foto 5" />
+    <img src="images/foto6.jpg" alt="Foto 6" />
   </div>
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 Galeri Interaktif. Dibuat oleh [Nama Kamu]
+    &copy; 2025 Galeri Lokal | Buatanmu Sendiri
   </footer>
-
-  <!-- SCRIPT -->
-  <script>
-    // JAM DIGITAL
-    function updateClock() {
-      const now = new Date();
-      const jam = String(now.getHours()).padStart(2, '0');
-      const menit = String(now.getMinutes()).padStart(2, '0');
-      const detik = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('clock').textContent = `${jam}:${menit}:${detik}`;
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    // GALERI
-    const gallery = document.getElementById('gallery');
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-    let photoCount = 0;
-
-    function loadMore() {
-      for (let i = 0; i < 6; i++) {
-        const img = document.createElement('img');
-        const keywords = ["nature", "city", "travel", "beach", "mountain", "forest"];
-        const keyword = keywords[(photoCount + i) % keywords.length];
-        img.src = `https://source.unsplash.com/random/300x200?sig=${photoCount + i}&${keyword}`;
-        img.alt = `Foto ${photoCount + i}`;
-        img.onclick = () => openModal(img.src);
-        gallery.appendChild(img);
-      }
-      photoCount += 6;
-    }
-
-    function openModal(src) {
-      modalImg.src = src;
-      modal.style.display = 'block';
-    }
-
-    function closeModal() {
-      modal.style.display = 'none';
-    }
-
-    loadMore();
-  </script>
 
 </body>
 </html>
-
