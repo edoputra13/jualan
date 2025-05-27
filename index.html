@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galeri dengan Header Running Vertikal</title>
+  <title>Galeri dengan Header Swipe Vertikal</title>
   <style>
     body {
       margin: 0;
@@ -12,32 +12,33 @@
       color: white;
     }
 
-    /* HEADER BERJALAN VERTIKAL */
+    /* HEADER DENGAN TEKS BERJALAN SWIPE */
     .header-container {
       position: relative;
-      height: 100px;
+      height: 80px;
       overflow: hidden;
       background: linear-gradient(to right, #222, #444);
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .vertical-run {
-      position: absolute;
-      animation: scroll-up 10s linear infinite;
-    }
-
-    @keyframes scroll-up {
-      0% { top: 100%; }
-      100% { top: -100%; }
+      display: flex;
+      flex-direction: column;
+      animation: swipeUp 12s linear infinite;
     }
 
     .vertical-run p {
       margin: 0;
-      padding: 5px 20px;
+      padding: 10px 20px;
       font-size: 20px;
       text-align: center;
+    }
+
+    @keyframes swipeUp {
+      0% { transform: translateY(100%); }
+      25% { transform: translateY(0%); }
+      50% { transform: translateY(-100%); }
+      75% { transform: translateY(-200%); }
+      100% { transform: translateY(-300%); }
     }
 
     /* GALERI */
@@ -63,7 +64,6 @@
       transform: scale(1.05);
     }
 
-    /* FOOTER */
     footer {
       text-align: center;
       padding: 20px;
@@ -74,7 +74,7 @@
 </head>
 <body>
 
-  <!-- HEADER BERJALAN -->
+  <!-- HEADER RUNNING VERTIKAL SWIPE -->
   <div class="header-container">
     <div class="vertical-run">
       <p>📢 Selamat datang di Galeri Foto Lokal!</p>
@@ -94,9 +94,8 @@
     <img src="images/foto6.jpg" alt="Foto 6" />
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    &copy; 2025 Galeri Lokal | Buatanmu Sendiri
+    &copy; 2025 Galeri Lokal | Efek Swipe Header Vertikal
   </footer>
 
 </body>
