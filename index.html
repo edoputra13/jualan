@@ -3,86 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galeri dengan Efek Header Huruf Acak</title>
+  <title>MagicLand - Dunia Ajaibmu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Courier New', monospace;
-      background-color: #111;
-      color: white;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #f0f8ff, #fff);
+      color: #333;
     }
 
-    /* HEADER DENGAN EFEK HURUF ACAK */
-    .header-container {
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(to right, #222, #444);
+    header {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      padding: 60px 20px;
       text-align: center;
+      color: white;
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     }
 
-    .scramble-text {
-      font-size: 24px;
-      color: #0f0;
-      white-space: nowrap;
-      overflow: hidden;
+    .sub-header {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      margin-top: -10px;
+      font-weight: 400;
+      text-shadow: none;
     }
 
-    /* GALERI */
     .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 30px;
-      background-color: #222;
+      padding: 40px 20px;
     }
 
     .gallery img {
-      width: 300px;
-      height: 200px;
+      width: 280px;
+      height: 180px;
       object-fit: cover;
-      margin: 10px;
-      border: 4px solid #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
-      transition: transform 0.3s ease;
+      margin: 15px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
 
     footer {
+      background: #2575fc;
+      color: white;
       text-align: center;
       padding: 20px;
-      background: #333;
-      color: #ccc;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        font-size: 36px;
+      }
+
+      .sub-header {
+        font-size: 16px;
+      }
+
+      .gallery img {
+        width: 90%;
+        height: auto;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER DENGAN EFEK HURUF ACAK -->
-  <div class="header-container">
-    <div class="scramble-text" id="scramble">Selamat datang di Galeri Foto Lokal!</div>
-  </div>
+  <header>
+    MagicLand
+    <div class="sub-header">Temukan dunia ajaibmu di sini</div>
+  </header>
 
-  <!-- GALERI -->
-  <div class="gallery">
-    <img src="images/foto1.jpg" alt="Foto 1" />
-    <img src="images/foto2.jpg" alt="Foto 2" />
-    <img src="images/foto3.jpg" alt="Foto 3" />
-    <img src="images/foto4.jpg" alt="Foto 4" />
-    <img src="images/foto5.jpg" alt="Foto 5" />
-    <img src="images/foto6.jpg" alt="Foto 6" />
-  </div>
+  <main class="gallery">
+    <img src="images/image1.jpg" alt="Magic 1">
+    <img src="images/image2.jpg" alt="Magic 2">
+    <img src="images/image3.jpg" alt="Magic 3">
+  </main>
 
   <footer>
-    &copy; 2025 Galeri Lokal | Efek Huruf Acak di Header
+    &copy; 2025 MagicLand - Dunia Ajaibmu. Semua hak dilindungi.
   </footer>
 
-  <!-- SCRIPT EFEK HURUF ACAK -->
-  <script>
-    const el = document.getElementById("scramble");
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*";
-    const originalTex
+</body>
+</html>
+
