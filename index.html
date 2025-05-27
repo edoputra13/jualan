@@ -49,7 +49,27 @@
     <div class="bg-gray-800 p-4 rounded-xl">
       <p class="text-yellow-300 text-xl font-bold">REQUEST</p>
       <p class="text-3xl font-mono">7,504,147</p>
-      <p class="text-sm text-gray-400">27/05/2025 – 09:51:47 WIB</p>
+      <p id="live-time" class="text-sm text-gray-400"></p>
+
+<script>
+  function updateTime() {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const formattedTime = `${day}/${month}/${year} – ${hours}:${minutes}:${seconds} WIB`;
+    document.getElementById("live-time").textContent = formattedTime;
+  }
+
+  // Jalankan saat load dan perbarui setiap detik
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
+
     </div>
     <div class="bg-gray-800 p-4 rounded-xl">
       <p class="text-yellow-300 text-xl font-bold">VISITOR</p>
