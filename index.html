@@ -3,42 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galeri dengan Header Swipe Vertikal</title>
+  <title>Galeri dengan Efek Header Huruf Acak</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Courier New', monospace;
       background-color: #111;
       color: white;
     }
 
-    /* HEADER DENGAN TEKS BERJALAN SWIPE */
+    /* HEADER DENGAN EFEK HURUF ACAK */
     .header-container {
-      position: relative;
-      height: 80px;
-      overflow: hidden;
-      background: linear-gradient(to right, #222, #444);
-    }
-
-    .vertical-run {
+      height: 100px;
       display: flex;
-      flex-direction: column;
-      animation: swipeUp 12s linear infinite;
-    }
-
-    .vertical-run p {
-      margin: 0;
-      padding: 10px 20px;
-      font-size: 20px;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to right, #222, #444);
       text-align: center;
     }
 
-    @keyframes swipeUp {
-      0% { transform: translateY(100%); }
-      25% { transform: translateY(0%); }
-      50% { transform: translateY(-100%); }
-      75% { transform: translateY(-200%); }
-      100% { transform: translateY(-300%); }
+    .scramble-text {
+      font-size: 24px;
+      color: #0f0;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     /* GALERI */
@@ -74,14 +62,9 @@
 </head>
 <body>
 
-  <!-- HEADER RUNNING VERTIKAL SWIPE -->
+  <!-- HEADER DENGAN EFEK HURUF ACAK -->
   <div class="header-container">
-    <div class="vertical-run">
-      <p>📢 Selamat datang di Galeri Foto Lokal!</p>
-      <p>🖼️ Foto diambil dari folder lokal /images/</p>
-      <p>📂 Tambahkan foto baru hanya dengan menyimpan ke folder</p>
-      <p>🎉 Website sederhana, cepat, dan bisa offline</p>
-    </div>
+    <div class="scramble-text" id="scramble">Selamat datang di Galeri Foto Lokal!</div>
   </div>
 
   <!-- GALERI -->
@@ -95,8 +78,11 @@
   </div>
 
   <footer>
-    &copy; 2025 Galeri Lokal | Efek Swipe Header Vertikal
+    &copy; 2025 Galeri Lokal | Efek Huruf Acak di Header
   </footer>
 
-</body>
-</html>
+  <!-- SCRIPT EFEK HURUF ACAK -->
+  <script>
+    const el = document.getElementById("scramble");
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*";
+    const originalTex
