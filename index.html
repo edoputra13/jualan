@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galeri Interaktif dengan Jam</title>
+  <title>Galeri Interaktif Lengkap</title>
   <style>
-    /* Background untuk seluruh halaman */
+    /* Background seluruh halaman */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -13,11 +13,9 @@
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      padding: 20px 30px;
       color: white;
     }
 
-    /* Overlay agar teks terbaca di atas background */
     body::before {
       content: "";
       position: fixed;
@@ -26,7 +24,7 @@
       z-index: -1;
     }
 
-    /* Fitur jam di pojok kanan atas */
+    /* Jam digital */
     #clock {
       position: fixed;
       top: 10px;
@@ -40,30 +38,30 @@
       font-family: 'Courier New', monospace;
     }
 
-    /* Header dengan foto */
+    /* Header foto + teks */
     .photo-header {
       position: relative;
       width: 100%;
-      height: 45px;
+      height: 150px;
       background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');
       background-size: cover;
       background-position: center;
       display: flex;
-      align-items: center;
       justify-content: center;
-      color: black;
+      align-items: flex-end;
+      padding-bottom: 15px;
+      color: white;
     }
 
-header-text {
-  position: absolute;
-  bottom: 70px;     /* ⬅️ atur posisi vertikal */
-  left: 30px;       /* ⬅️ atur posisi horizontal */
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-align: left;
-}
-
+    .header-text {
+      position: absolute;
+      bottom: 15px;
+      left: 30px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-align: left;
+    }
 
     /* Galeri */
     .gallery {
@@ -104,7 +102,7 @@ header-text {
       background-color: #555;
     }
 
-    /* Modal Lightbox */
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -123,61 +121,83 @@ header-text {
       max-height: 80%;
     }
 
-  footer {
-  width: 100%;
-  margin: 0;
-  padding: 15px;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  text-align: center;
-  box-sizing: border-box;
-  position: relative;
-  left: 0;
-}
+    /* Running text ke atas */
+    .vertical-marquee {
+      position: relative;
+      height: 60px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      font-size: 16px;
+      line-height: 30px;
+      padding-left: 20px;
+    }
+
+    .scrolling-text {
+      position: absolute;
+      animation: scroll-up 10s linear infinite;
+    }
+
+    @keyframes scroll-up {
+      0% {
+        top: 100%;
+      }
+      100% {
+        top: -100%;
+      }
+    }
+
+    /* Footer penuh */
+    footer {
+      width: 100%;
+      margin: 0;
+      padding: 15px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+      position: relative;
+      left: 0;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Fitur Jam -->
+  <!-- JAM DIGITAL -->
   <div id="clock"></div>
 
-  <!-- HEADER -->
+  <!-- HEADER FOTO -->
   <div class="photo-header">
     <div class="header-text">
-      <h1>DEEPA STORE</h1>
-      
+      <h1>📷 Galeri Interaktif</h1>
+      <p>Teks menyesuaikan posisi foto header</p>
     </div>
   </div>
 
   <!-- GALERI -->
   <div class="gallery" id="gallery"></div>
 
-  <!-- Tombol -->
-  <button class="load-more" onclick="loadMore()">Lebih Banyak Testi</button>
+  <!-- TOMBOL -->
+  <button class="load-more" onclick="loadMore()">Tampilkan Lebih Banyak</button>
 
-  <!-- MODAL UNTUK GAMBAR -->
+  <!-- MODAL -->
   <div class="modal" id="modal" onclick="closeModal()">
     <img id="modal-img" src="" alt="Perbesar Gambar">
   </div>
-<!-- RUNNING TEKS KE ATAS -->
-<div class="vertical-marquee">
-  <div class="scrolling-text">
-    <p>📢 Selamat datang di Galeri Interaktif!</p>
-    <p>🖼️ Klik gambar untuk memperbesar.</p>
-    <p>🕒 Jam real-time di pojok atas kanan.</p>
-    <p>🎉 Nikmati koleksi gambar yang terus bertambah!</p>
+
+  <!-- RUNNING TEXT VERTIKAL -->
+  <div class="vertical-marquee">
+    <div class="scrolling-text">
+      <p>📢 Selamat datang di Galeri Interaktif!</p>
+      <p>🖼️ Klik gambar untuk memperbesar.</p>
+      <p>🕒 Jam real-time di pojok atas kanan.</p>
+      <p>🎉 Nikmati koleksi gambar yang terus bertambah!</p>
+    </div>
   </div>
-</div>
 
-<!-- FOOTER -->
-<footer>
-  &copy; 2025 Galeri Interaktif. Dibuat oleh [Nama Kamu]
-</footer>
-
-  
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 Deepastore
+    &copy; 2025 Galeri Interaktif. Dibuat oleh [Nama Kamu]
   </footer>
 
   <!-- SCRIPT -->
@@ -226,3 +246,4 @@ header-text {
 
 </body>
 </html>
+
