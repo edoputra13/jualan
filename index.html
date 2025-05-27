@@ -9,7 +9,7 @@
 <body class="font-mono">
   <!-- Top Banner -->
  <div id="dynamic-banner" class="text-white text-center py-2 text-sm md:text-base font-semibold transition-colors duration-500">
-  We updated the <span class="underline">Terms of Service</span>, read <span class="underline">Here</span>
+  FH CADANGAN <span class="underline">OPEN</span>, RESELLER <span class="underline">Here</span>
 </div>
 
 <script>
@@ -74,7 +74,27 @@
     <div class="bg-gray-800 p-4 rounded-xl">
       <p class="text-yellow-300 text-xl font-bold">VISITOR</p>
       <p class="text-3xl font-mono">373,855</p>
-      <p class="text-sm text-gray-400">27/05/2025 – 09:52:00 WIB</p>
+      <p id="live-time" class="text-sm text-gray-400"></p>
+
+<script>
+  function updateTime() {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const formattedTime = `${day}/${month}/${year} – ${hours}:${minutes}:${seconds} WIB`;
+    document.getElementById("live-time").textContent = formattedTime;
+  }
+
+  // Jalankan saat load dan perbarui setiap detik
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
+
     </div>
   </div>
 
@@ -83,12 +103,11 @@
     <!-- Info + Changelog -->
     <div class="bg-gray-800 p-4 rounded-xl">
       <h2 class="text-lg font-bold border-l-4 border-yellow-400 pl-2 mb-2">INFORMATION</h2>
-      <p class="bg-gray-700 p-2 rounded">Use the main domain <span class="text-yellow-400">api.neoxr.my.id</span> when accessing this website or when fetching.</p>
+      <p class="bg-gray-700 p-2 rounded">Use the main domain <span class="text-yellow-400">deepazone.my.id</span> semua informasi transaksi ada disini.</p>
       <h3 class="mt-4 mb-2 font-bold border-l-4 border-yellow-400 pl-2">CHANGELOG</h3>
       <ul class="space-y-2 text-sm">
-        <li>[26/05/2025 – 16:39] [fix] some errors</li>
-        <li>[25/05/2025 – 05:25] [fix] bard image generator & youtube 404</li>
-        <li>[23/05/2025 – 15:14] [info] server maintenance has been completed</li>
+        <li>UPDATE SOON</li>
+
       </ul>
     </div>
 
