@@ -172,7 +172,33 @@
   <h3 class="mt-4 font-bold border-l-4 border-yellow-400 pl-2 text-white">FOLDERS</h3>
   <button class="mt-2 bg-gray-700 px-4 py-2 rounded text-yellow-400 hover:bg-gray-600">AI Tools - Open</button>
 </div>
+<!-- Audio Player (tidak terlihat) -->
+  <audio id="backgroundMusic" src="musik.mp3" loop></audio>
 
+  <!-- Tombol Musik Mengambang -->
+  <button id="musicBtn"
+    onclick="toggleMusic()"
+    class="fixed bottom-4 right-4 bg-black/40 hover:bg-black/70 text-white backdrop-blur-sm px-4 py-2 rounded-full shadow-lg z-50 transition-all duration-300 text-xl">
+    ▶️
+  </button>
+
+  <!-- Script Musik -->
+  <script>
+    const music = document.getElementById("backgroundMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        musicBtn.textContent = "▶️";
+      } else {
+        music.play();
+        musicBtn.textContent = "⏸️";
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
   </div>
 </body>
 </html>
