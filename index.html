@@ -72,8 +72,37 @@
 
     </div>
     <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-yellow-300 text-xl font-bold">VISITOR</p>
-      <p class="text-3xl font-mono">373,855</p>
+<p class="text-yellow-300 text-xl font-bold">VISITOR</p>
+<p id="visitor-count" class="text-3xl font-mono transition-all duration-500 ease-in-out">373,855</p>
+
+<script>
+  let visitor = 373855;
+
+  function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function updateVisitorRealistically() {
+    const el = document.getElementById("visitor-count");
+
+    // Tentukan apakah jumlah visitor akan naik
+    const shouldIncrease = Math.random() < 0.8; // 80% kemungkinan naik
+
+    if (shouldIncrease) {
+      const increase = Math.floor(Math.random() * 5) + 1; // naik 1–5 orang
+      visitor += increase;
+      el.textContent = formatNumber(visitor);
+    }
+
+    // Jadwalkan update berikutnya secara acak (1–5 detik)
+    const nextUpdate = Math.floor(Math.random() * 4000) + 1000;
+    setTimeout(updateVisitorRealistically, nextUpdate);
+  }
+
+  // Mulai simulasi
+  updateVisitorRealistically();
+</script>
+
       <p id="live-time" class="text-sm text-gray-400"></p>
 
 <script>
