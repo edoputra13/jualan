@@ -2,98 +2,115 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MagicLand - Dunia Ajaibmu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Hotstar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(to bottom, #f0f8ff, #fff);
-      color: #333;
+      background-color: #0b0c12;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
     }
 
+    /* NAVBAR */
     header {
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      padding: 60px 20px;
-      text-align: center;
-      color: white;
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    }
-
-    .sub-header {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 18px;
-      margin-top: -10px;
-      font-weight: 400;
-      text-shadow: none;
-    }
-
-    .gallery {
+      background-color: #090b13;
+      padding: 20px 40px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 40px 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #00aaff;
+      margin: 0;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* GALERI GRID ala Hotstar */
+    .gallery {
+      padding: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
     }
 
     .gallery img {
-      width: 280px;
-      height: 180px;
+      width: 100%;
+      height: 270px;
       object-fit: cover;
-      margin: 15px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.05);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
     }
 
     footer {
-      background: #2575fc;
-      color: white;
       text-align: center;
       padding: 20px;
+      background-color: #090b13;
+      color: #777;
       font-size: 14px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       header {
-        font-size: 36px;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
-      .sub-header {
-        font-size: 16px;
-      }
-
-      .gallery img {
-        width: 90%;
-        height: auto;
+      nav {
+        margin-top: 10px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <header>
-    MagicLand
-    <div class="sub-header">Temukan dunia ajaibmu di sini</div>
+    <h1>Mini Hotstar</h1>
+    <nav>
+      <a href="#">Beranda</a>
+      <a href="#">Film</a>
+      <a href="#">Serial</a>
+      <a href="#">Akun</a>
+    </nav>
   </header>
 
-  <main class="gallery">
-    <img src="images/image1.jpg" alt="Magic 1">
-    <img src="images/image2.jpg" alt="Magic 2">
-    <img src="images/image3.jpg" alt="Magic 3">
-  </main>
+  <!-- GALERI -->
+  <section class="gallery">
+    <img src="images/movie1.jpg" alt="Film 1">
+    <img src="images/movie2.jpg" alt="Film 2">
+    <img src="images/movie3.jpg" alt="Film 3">
+    <img src="images/movie1.jpg" alt="Film 4">
+    <img src="images/movie2.jpg" alt="Film 5">
+    <img src="images/movie3.jpg" alt="Film 6">
+  </section>
 
+  <!-- FOOTER -->
   <footer>
-    &copy; 2025 MagicLand - Dunia Ajaibmu. Semua hak dilindungi.
+    &copy; 2025 Mini Hotstar Clone | Dibuat untuk latihan.
   </footer>
 
 </body>
 </html>
-
