@@ -2,114 +2,144 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mini Hotstar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neoxr Clone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    /* Reset */
     * {
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      background-color: #0b0c12;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* NAVBAR */
     header {
-      background-color: #090b13;
-      padding: 20px 40px;
+      background-color: #1f1f1f;
+      padding: 15px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border-bottom: 1px solid #333;
     }
 
-    header h1 {
-      font-size: 28px;
-      color: #00aaff;
-      margin: 0;
+    header .logo {
+      font-weight: 700;
+      font-size: 24px;
+      color: #00bcd4;
+      cursor: pointer;
+      user-select: none;
     }
 
     nav a {
-      color: #ccc;
+      color: #aaa;
       text-decoration: none;
-      margin-left: 20px;
+      margin-left: 25px;
       font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
-      color: #fff;
+      color: #00bcd4;
     }
 
-    /* GALERI GRID ala Hotstar */
-    .gallery {
-      padding: 40px;
+    main {
+      flex: 1;
+      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    h2.section-title {
+      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #00bcd4;
+    }
+
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
       gap: 20px;
     }
 
-    .gallery img {
+    .gallery-grid img {
       width: 100%;
-      height: 270px;
+      aspect-ratio: 2/3;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
+    .gallery-grid img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 20px #00bcd4;
     }
 
     footer {
+      background-color: #1f1f1f;
       text-align: center;
-      padding: 20px;
-      background-color: #090b13;
-      color: #777;
+      padding: 15px 10px;
+      color: #666;
       font-size: 14px;
+      border-top: 1px solid #333;
+      user-select: none;
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
+      nav a {
+        margin-left: 15px;
+        font-size: 14px;
       }
-
-      nav {
-        margin-top: 10px;
+      h2.section-title {
+        font-size: 22px;
+      }
+      main {
+        padding: 20px 15px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <header>
-    <h1>Mini Hotstar</h1>
+    <div class="logo">Neoxr</div>
     <nav>
-      <a href="#">Beranda</a>
-      <a href="#">Film</a>
-      <a href="#">Serial</a>
-      <a href="#">Akun</a>
+      <a href="#">Home</a>
+      <a href="#">Movies</a>
+      <a href="#">TV Shows</a>
+      <a href="#">My List</a>
     </nav>
   </header>
 
-  <!-- GALERI -->
-  <section class="gallery">
-    <img src="images/movie1.jpg" alt="Film 1">
-    <img src="images/movie2.jpg" alt="Film 2">
-    <img src="images/movie3.jpg" alt="Film 3">
-    <img src="images/movie1.jpg" alt="Film 4">
-    <img src="images/movie2.jpg" alt="Film 5">
-    <img src="images/movie3.jpg" alt="Film 6">
-  </section>
+  <main>
+    <h2 class="section-title">Popular Movies</h2>
+    <div class="gallery-grid">
+      <img src="images/poster1.jpg" alt="Movie 1" />
+      <img src="images/poster2.jpg" alt="Movie 2" />
+      <img src="images/poster3.jpg" alt="Movie 3" />
+      <img src="images/poster4.jpg" alt="Movie 4" />
+      <img src="images/poster5.jpg" alt="Movie 5" />
+      <img src="images/poster6.jpg" alt="Movie 6" />
+      <img src="images/poster7.jpg" alt="Movie 7" />
+      <img src="images/poster8.jpg" alt="Movie 8" />
+    </div>
+  </main>
 
-  <!-- FOOTER -->
   <footer>
-    &copy; 2025 Mini Hotstar Clone | Dibuat untuk latihan.
+    &copy; 2025 Neoxr Clone. All rights reserved.
   </footer>
 
 </body>
