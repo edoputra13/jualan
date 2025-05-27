@@ -8,9 +8,29 @@
 </head>
 <body class="font-mono">
   <!-- Top Banner -->
-  <div class="bg-pink-600 text-white text-center py-2 text-sm md:text-base font-semibold">
-    We updated the <span class="underline">Terms of Service</span> read <span class="underline">Here</span>
-  </div>
+ <div id="dynamic-banner" class="text-white text-center py-2 text-sm md:text-base font-semibold transition-colors duration-500">
+  We updated the <span class="underline">Terms of Service</span>, read <span class="underline">Here</span>
+</div>
+
+<script>
+  function getRandomColor() {
+    const r = Math.floor(Math.random() * 156) + 100; // 100–255 (agar warna tidak terlalu gelap)
+    const g = Math.floor(Math.random() * 156) + 100;
+    const b = Math.floor(Math.random() * 156) + 100;
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
+  const banner = document.getElementById("dynamic-banner");
+
+  function updateBackground() {
+    banner.style.backgroundColor = getRandomColor();
+  }
+
+  // Set background immediately and update every 3 seconds
+  updateBackground();
+  setInterval(updateBackground, 3000);
+</script>
+
 
   <!-- Header -->
   <header class="flex flex-col md:flex-row md:items-center justify-between px-4 md:px-8 py-4 border-b border-gray-700 space-y-2 md:space-y-0">
