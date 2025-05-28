@@ -7,26 +7,43 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     #dynamic-banner {
-      background-size: 300% 300%;
-      animation: gradientSlide 6s ease-in-out infinite;
-      transition: background-image 1s ease;
+      background: linear-gradient(
+        270deg,
+        #ff0000,   /* Merah */
+        #ff7f00,   /* Jingga */
+        #ffff00,   /* Kuning */
+        #7fff00,   /* Kuning-hijau */
+        #00ff00,   /* Hijau */
+        #00ff7f,   /* Hijau-biru */
+        #00ffff,   /* Cyan */
+        #007fff,   /* Biru muda */
+        #0000ff,   /* Biru */
+        #7f00ff,   /* Ungu */
+        #ff00ff,   /* Magenta */
+        #ff007f,   /* Merah muda */
+        #ff0000    /* Ulangi Merah untuk loop */
+      );
+      background-size: 2000% 2000%;
+      animation: rotateRGB 25s linear infinite;
     }
 
-    @keyframes gradientSlide {
+    @keyframes rotateRGB {
       0%   { background-position: 0% 50%; }
       50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
   </style>
 </head>
-<body class="font-mono">
+<body class="font-mono bg-gray-900 text-white">
 
-  <!-- Top Banner -->
+  <!-- Header RGB Memutar -->
   <div id="dynamic-banner"
        class="fixed top-0 left-0 w-full z-50 text-white text-center py-2 text-sm md:text-base font-semibold shadow-md">
     FH CADANGAN <span class="underline">OPEN</span>, RESELLER <span class="underline">LESGO</span>
   </div>
-<div class="h-10 md:h-12"></div>
+
+  <!-- Spacer -->
+  <div class="h-10 md:h-12"></div>
   <script>
     function getDarkToLightColorPair() {
       // Warna gelap
