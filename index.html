@@ -5,31 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DEEPA STORE</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #dynamic-banner {
+      background-size: 300% 300%;
+      animation: gradientSlide 6s ease-in-out infinite;
+      transition: background-image 1s ease;
+    }
+
+    @keyframes gradientSlide {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
 </head>
 <body class="font-mono">
+
   <!-- Top Banner -->
- <div id="dynamic-banner" class="text-white text-center py-2 text-sm md:text-base font-semibold transition-colors duration-500">
-  FH CADANGAN <span class="underline">OPEN</span>, RESELLER <span class="underline">LESGO</span>
-</div>
+  <div id="dynamic-banner" class="text-white text-center py-2 text-sm md:text-base font-semibold">
+    FH CADANGAN <span class="underline">OPEN</span>, RESELLER <span class="underline">LESGO</span>
+  </div>
 
-<script>
-  function getRandomColor() {
-    const r = Math.floor(Math.random() * 156) + 100; // 100–255 (agar warna tidak terlalu gelap)
-    const g = Math.floor(Math.random() * 156) + 100;
-    const b = Math.floor(Math.random() * 156) + 100;
-    return `rgb(${r}, ${g}, ${b})`;
-  }
+  <script>
+    function getRandomColor() {
+      const r = Math.floor(Math.random() * 156) + 100;
+      const g = Math.floor(Math.random() * 156) + 100;
+      const b = Math.floor(Math.random() * 156) + 100;
+      return `rgb(${r}, ${g}, ${b})`;
+    }
 
-  const banner = document.getElementById("dynamic-banner");
+    const banner = document.getElementById("dynamic-banner");
 
-  function updateBackground() {
-    banner.style.backgroundColor = getRandomColor();
-  }
+    function updateGradient() {
+      const color1 = getRandomColor();
+      const color2 = getRandomColor();
+      banner.style.backgroundImage = `linear-gradient(90deg, ${color1}, ${color2})`;
+    }
 
-  // Set background immediately and update every 3 seconds
-  updateBackground();
-  setInterval(updateBackground, 3000);
-</script>
+    // Inisialisasi dan update setiap 5 detik
+    updateGradient();
+    setInterval(updateGradient, 5000);
+  </script>
 
 
   <!-- Header -->
