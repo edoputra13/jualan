@@ -28,22 +28,21 @@
   </div>
 <div class="h-10 md:h-12"></div>
   <script>
-    function getRandomColor() {
-      const r = Math.floor(Math.random() * 156) + 100;
-      const g = Math.floor(Math.random() * 156) + 100;
-      const b = Math.floor(Math.random() * 156) + 100;
-      return `rgb(${r}, ${g}, ${b})`;
+    function getDarkToLightColorPair() {
+      // Warna gelap
+      const dark = `rgb(${Math.floor(Math.random()*80)}, ${Math.floor(Math.random()*80)}, ${Math.floor(Math.random()*80)})`;
+      // Warna cerah
+      const light = `rgb(${Math.floor(Math.random()*100)+155}, ${Math.floor(Math.random()*100)+155}, ${Math.floor(Math.random()*100)+155})`;
+      return [dark, light];
     }
 
     const banner = document.getElementById("dynamic-banner");
 
     function updateGradient() {
-      const color1 = getRandomColor();
-      const color2 = getRandomColor();
-      banner.style.backgroundImage = `linear-gradient(90deg, ${color1}, ${color2})`;
+      const [dark, light] = getDarkToLightColorPair();
+      banner.style.backgroundImage = `linear-gradient(90deg, ${dark}, ${light})`;
     }
 
-    // Inisialisasi dan update setiap 5 detik
     updateGradient();
     setInterval(updateGradient, 5000);
   </script>
