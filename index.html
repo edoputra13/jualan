@@ -44,25 +44,7 @@
 
   <!-- Spacer -->
   <div class="h-10 md:h-12"></div>
-  <script>
-    function getDarkToLightColorPair() {
-      // Warna gelap
-      const dark = `rgb(${Math.floor(Math.random()*80)}, ${Math.floor(Math.random()*80)}, ${Math.floor(Math.random()*80)})`;
-      // Warna cerah
-      const light = `rgb(${Math.floor(Math.random()*100)+155}, ${Math.floor(Math.random()*100)+155}, ${Math.floor(Math.random()*100)+155})`;
-      return [dark, light];
-    }
 
-    const banner = document.getElementById("dynamic-banner");
-
-    function updateGradient() {
-      const [dark, light] = getDarkToLightColorPair();
-      banner.style.backgroundImage = `linear-gradient(90deg, ${dark}, ${light})`;
-    }
-
-    updateGradient();
-    setInterval(updateGradient, 5000);
-  </script>
 
 
   <!-- Header -->
