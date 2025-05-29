@@ -254,7 +254,7 @@
     </div>
   </div>
 <!-- Suara Notifikasi -->
-  <audio id="notif-sound" src="tawaran.mpeg" preload="auto"></audio>
+  <audio id="notif-sound" src="tawaran.mp3" preload="auto"></audio>
       const infoBubble = document.getElementById('info-bubble');
     const notifSound = document.getElementById('notif-sound');
 
@@ -262,26 +262,26 @@
     setTimeout(() => {
       infoBubble.classList.add('info-show');
       notifSound.play(); // Putar suara saat muncul
-    }, 1000);
+    }, 15000);
 
     // Hilang setelah 6 detik
     setTimeout(() => {
       infoBubble.classList.remove('info-show');
       infoBubble.classList.add('info-hide');
-    }, 7000);
+    }, 19000);
   <script>
     const infoBubble = document.getElementById('info-bubble');
 
     // Muncul setelah 1 detik
     setTimeout(() => {
       infoBubble.classList.add('info-show');
-    }, 20000);
+    }, 15000);
 
     // Hilang setelah 6 detik
     setTimeout(() => {
       infoBubble.classList.remove('info-show');
       infoBubble.classList.add('info-hide');
-    }, 31000);
+    }, 19000);
   </script>
 
   <!-- Script Musik -->
