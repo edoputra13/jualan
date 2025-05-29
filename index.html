@@ -250,7 +250,7 @@
 
     <!-- Gelembung Informasi -->
     <div class="bg-white text-gray-800 text-sm px-4 py-3 rounded-lg shadow-xl max-w-xs border-l-4 border-blue-500">
-      <p>✨ <strong>Hai!</strong> Kamu sedang mencari disney premium plan murah? bisa langsung WhatsApp dattebayo.</p>
+      <p>✨ <strong>Hai!</strong> Kamu lagi cari disney premium plan murah? bisa langsung WhatsApp dattebayo.</p>
     </div>
   </div>
 
@@ -263,26 +263,6 @@
     }, 15000);
 
     // Hilang setelah 6 detik
-    setTimeout(() => {
-      infoBubble.classList.remove('info-show');
-      infoBubble.classList.add('info-hide');
-    }, 19000);
-  </script>
-  
-<audio id="notifSound" src="tawaran.mp3" preload="auto"></audio>
-
-  <!-- Script Gelembung Muncul + Suara -->
-  <script>
-    const infoBubble = document.getElementById('info-bubble');
-    const notifSound = document.getElementById('notifSound');
-
-    // Muncul setelah 15 detik
-    setTimeout(() => {
-      infoBubble.classList.add('info-show');
-      notifSound.play().catch(err => console.log('Audio blocked:', err));
-    }, 15000);
-
-    // Hilang setelah 4 detik kemudian
     setTimeout(() => {
       infoBubble.classList.remove('info-show');
       infoBubble.classList.add('info-hide');
