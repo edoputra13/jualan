@@ -122,19 +122,10 @@
 
       <h3 class="mt-4 mb-2 font-bold border-l-4 border-yellow-400 pl-2">CHANGELOG</h3>
       <ul class="space-y-2 text-sm">
-        <li id="changelog-shuffle">UPDATE SOON</li>
+        <li>UPDATE SOON</li>
       </ul>
 
-      <script>
-        const texts = ["UPDATE SOON", "COMING SOON", "WAIT FOR IT...", "PREPARE FOR UPDATES"];
-        let currentIndex = 0;
-        const changelog = document.getElementById("changelog-shuffle");
-
-        setInterval(() => {
-          changelog.textContent = texts[currentIndex];
-          currentIndex = (currentIndex + 1) % texts.length;
-        }, 2000);
-      </script>
+      
     </div>
 
     <div class="bg-gray-800 p-4 rounded-xl">
