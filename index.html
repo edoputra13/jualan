@@ -130,7 +130,13 @@
   
 </ul>
     </div>
-
+    
+<!-- Baterai -->
+  <section class="p-4">
+    <h2 class="text-lg font-semibold mb-2">Status Baterai</h2>
+    <p id="battery-status" class="text-sm bg-gray-800 p-3 rounded">Memuat status baterai...</p>
+  </section>
+    
     <div class="bg-gray-800 p-4 rounded-xl">
       <h2 class="text-lg font-bold border-l-4 border-yellow-400 pl-2 mb-2">OWNER</h2>
       <ul class="space-y-3 text-sm">
@@ -201,6 +207,22 @@
         musicBtn.textContent = "⏸️";
       }
       isPlaying = !isPlaying;
+    }
+
+    const batteryStatus = document.getElementById("battery-status");
+    if ('getBattery' in navigator) {
+      navigator.getBattery().then(battery => {
+        function updateBatteryInfo() {
+          const level = Math.round(battery.level * 100);
+          const charging = battery.charging ? "⚡ Mengisi daya" : "🔋 Tidak mengisi daya";
+          batteryStatus.textContent = `${charging} - Level: ${level}%`;
+        }
+        updateBatteryInfo();
+        battery.addEventListener('chargingchange', updateBatteryInfo);
+        battery.addEventListener('levelchange', updateBatteryInfo);
+      });
+    } else {
+      batteryStatus.textContent = "Perangkat tidak mendukung deteksi baterai.";
     }
   </script>
 </body>
