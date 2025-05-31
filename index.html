@@ -153,6 +153,36 @@
       <h3 class="mt-4 mb-2 font-bold border-l-4 border-yellow-400 pl-2">CHANGELOG</h3>
       <ul class="space-y-2 text-sm">
         <li>UPDATE SOON</li>
+<script>
+  function shuffleText(element, finalText, speed = 50, delay = 2000) {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    let iterations = 0;
+    const shuffle = setInterval(() => {
+      const text = finalText
+        .split("")
+        .map((char, i) => {
+          if (i < iterations) return finalText[i];
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+        .join("");
+      element.textContent = text;
+      if (iterations >= finalText.length) {
+        clearInterval(shuffle);
+      }
+      iterations += 1 / 3;
+    }, speed);
+  }
+
+  // Jalankan setelah halaman siap
+  window.addEventListener("DOMContentLoaded", () => {
+    const shuffleEl = document.getElementById("shuffle-text");
+    const finalText = shuffleEl.textContent;
+    shuffleEl.textContent = ""; // Kosongkan dulu
+    setTimeout(() => {
+      shuffleText(shuffleEl, finalText);
+    }, 500); // Delay sebelum efek dimulai
+  });
+</script>
 
       </ul>
     </div>
