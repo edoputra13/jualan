@@ -9,45 +9,29 @@
     #dynamic-banner {
       background: linear-gradient(
         270deg,
-        #ff0000,   /* Merah */
-        #ff7f00,   /* Jingga */
-        #ffff00,   /* Kuning */
-        #7fff00,   /* Kuning-hijau */
-        #00ff00,   /* Hijau */
-        #00ff7f,   /* Hijau-biru */
-        #00ffff,   /* Cyan */
-        #007fff,   /* Biru muda */
-        #0000ff,   /* Biru */
-        #7f00ff,   /* Ungu */
-        #ff00ff,   /* Magenta */
-        #ff007f,   /* Merah muda */
-        #ff0000    /* Ulangi Merah untuk loop */
+        #ff0000, #ff7f00, #ffff00, #7fff00,
+        #00ff00, #00ff7f, #00ffff, #007fff,
+        #0000ff, #7f00ff, #ff00ff, #ff007f,
+        #ff0000
       );
       background-size: 2000% 2000%;
       animation: rotateRGB 60s linear infinite;
     }
-
     @keyframes rotateRGB {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
   </style>
 </head>
 <body class="font-mono bg-gray-900 text-white">
 
-  <!-- Header RGB Memutar -->
-  <div id="dynamic-banner"
-       class="fixed top-0 left-0 w-full z-50 text-white text-center py-2 text-sm md:text-base font-semibold shadow-md">
+  <!-- Header -->
+  <div id="dynamic-banner" class="fixed top-0 left-0 w-full z-50 text-white text-center py-2 text-sm md:text-base font-semibold shadow-md">
     FH CADANGAN <span class="underline">OPEN</span>, RESELLER <span class="underline">LESGO</span>
   </div>
-
-  <!-- Spacer -->
   <div class="h-10 md:h-12"></div>
 
-
-
-  <!-- Header -->
   <header class="flex flex-col md:flex-row md:items-center justify-between px-4 md:px-8 py-4 border-b border-gray-700 space-y-2 md:space-y-0">
     <h1 class="text-xl md:text-2xl font-bold">🔥 DEEPA STORE</h1>
     <nav class="flex flex-wrap gap-4 text-sm md:text-base">
@@ -65,219 +49,155 @@
       <p class="text-yellow-300 text-xl font-bold">TERJUAL</p>
       <p class="text-3xl font-mono">284</p>
       <p id="live-time" class="text-sm text-gray-400"></p>
-
-<script>
-  function updateTime() {
-    const now = new Date();
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-    const year = now.getFullYear();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-
-    const formattedTime = `${day}/${month}/${year} – ${hours}:${minutes}:${seconds} WIB`;
-    document.getElementById("live-time").textContent = formattedTime;
-  }
-
-  // Jalankan saat load dan perbarui setiap detik
-  updateTime();
-  setInterval(updateTime, 1000);
-</script>
-
+      <script>
+        function updateTime() {
+          const now = new Date();
+          const day = String(now.getDate()).padStart(2, '0');
+          const month = String(now.getMonth() + 1).padStart(2, '0');
+          const year = now.getFullYear();
+          const hours = String(now.getHours()).padStart(2, '0');
+          const minutes = String(now.getMinutes()).padStart(2, '0');
+          const seconds = String(now.getSeconds()).padStart(2, '0');
+          const formattedTime = `${day}/${month}/${year} – ${hours}:${minutes}:${seconds} WIB`;
+          document.getElementById("live-time").textContent = formattedTime;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+      </script>
     </div>
+
     <div class="bg-gray-800 p-4 rounded-xl">
-<p class="text-yellow-300 text-xl font-bold">VISITOR</p>
-<p id="visitor-count" class="text-3xl font-mono transition-all duration-500 ease-in-out">0</p>
+      <p class="text-yellow-300 text-xl font-bold">VISITOR</p>
+      <p id="visitor-count" class="text-3xl font-mono transition-all duration-500 ease-in-out">0</p>
+      <script>
+        const STORAGE_COUNT_KEY = "simulatedVisitorCount";
+        const STORAGE_DATE_KEY = "visitorLastDate";
+        const el = document.getElementById("visitor-count");
+        const DEFAULT_VISITOR = 0;
 
-<script>
-  const STORAGE_COUNT_KEY = "simulatedVisitorCount";
-  const STORAGE_DATE_KEY = "visitorLastDate";
-  const el = document.getElementById("visitor-count");
+        function getTodayDateString() {
+          const now = new Date();
+          return now.toISOString().split("T")[0];
+        }
 
-  const DEFAULT_VISITOR = 0;
+        const today = getTodayDateString();
+        const savedDate = localStorage.getItem(STORAGE_DATE_KEY);
+        let visitor;
 
-  // Ambil tanggal sekarang dalam format YYYY-MM-DD
-  function getTodayDateString() {
-    const now = new Date();
-    return now.toISOString().split("T")[0];
-  }
+        if (savedDate !== today) {
+          visitor = DEFAULT_VISITOR;
+          localStorage.setItem(STORAGE_DATE_KEY, today);
+          localStorage.setItem(STORAGE_COUNT_KEY, visitor);
+        } else {
+          visitor = parseInt(localStorage.getItem(STORAGE_COUNT_KEY)) || DEFAULT_VISITOR;
+        }
 
-  // Cek apakah tanggal hari ini sama dengan tanggal terakhir di simpan
-  const today = getTodayDateString();
-  const savedDate = localStorage.getItem(STORAGE_DATE_KEY);
-  let visitor;
+        function formatNumber(num) {
+          return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
-  if (savedDate !== today) {
-    // Hari berganti → reset
-    visitor = DEFAULT_VISITOR;
-    localStorage.setItem(STORAGE_DATE_KEY, today);
-    localStorage.setItem(STORAGE_COUNT_KEY, visitor);
-  } else {
-    // Hari masih sama → lanjutkan
-    visitor = parseInt(localStorage.getItem(STORAGE_COUNT_KEY)) || DEFAULT_VISITOR;
-  }
+        function updateVisitorRealistically() {
+          const shouldIncrease = Math.random() < 0.8;
+          if (shouldIncrease) {
+            const increase = Math.floor(Math.random() * 5) + 1;
+            visitor += increase;
+            el.textContent = formatNumber(visitor);
+            localStorage.setItem(STORAGE_COUNT_KEY, visitor);
+          }
+          const nextUpdate = Math.floor(Math.random() * 4000) + 1000;
+          setTimeout(updateVisitorRealistically, nextUpdate);
+        }
 
-  function formatNumber(num) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
-  function updateVisitorRealistically() {
-    const shouldIncrease = Math.random() < 0.8;
-    if (shouldIncrease) {
-      const increase = Math.floor(Math.random() * 5) + 1;
-      visitor += increase;
-      el.textContent = formatNumber(visitor);
-      localStorage.setItem(STORAGE_COUNT_KEY, visitor);
-    }
-    const nextUpdate = Math.floor(Math.random() * 4000) + 1000;
-    setTimeout(updateVisitorRealistically, nextUpdate);
-  }
-
-  // Tampilkan nilai awal
-  el.textContent = formatNumber(visitor);
-
-  // Mulai simulasi
-  updateVisitorRealistically();
-</script>
-
+        el.textContent = formatNumber(visitor);
+        updateVisitorRealistically();
+      </script>
     </div>
   </div>
 
   <!-- Info & Developer Section -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 px-4 md:px-8 pb-10">
-    <!-- Info + Changelog -->
     <div class="bg-gray-800 p-4 rounded-xl">
       <h2 class="text-lg font-bold border-l-4 border-yellow-400 pl-2 mb-2">INFORMATION</h2>
       <p class="bg-gray-700 p-2 rounded">Use the main domain <span class="text-yellow-400">deepazone.my.id</span> semua informasi transaksi ada disini.</p>
+
       <h3 class="mt-4 mb-2 font-bold border-l-4 border-yellow-400 pl-2">CHANGELOG</h3>
       <ul class="space-y-2 text-sm">
-        <li>UPDATE SOON</li>
-        
+        <li id="changelog-shuffle">UPDATE SOON</li>
       </ul>
-      
 
+      <script>
+        const texts = ["UPDATE SOON", "COMING SOON", "WAIT FOR IT...", "PREPARE FOR UPDATES"];
+        let currentIndex = 0;
+        const changelog = document.getElementById("changelog-shuffle");
+
+        setInterval(() => {
+          changelog.textContent = texts[currentIndex];
+          currentIndex = (currentIndex + 1) % texts.length;
+        }, 2000);
+      </script>
     </div>
 
-    <!-- Contacts -->
     <div class="bg-gray-800 p-4 rounded-xl">
       <h2 class="text-lg font-bold border-l-4 border-yellow-400 pl-2 mb-2">OWNER</h2>
       <ul class="space-y-3 text-sm">
         <li><strong>WhatsApp:</strong> 081717622225</li>
-
       </ul>
       <h3 class="mt-4 font-bold border-l-4 border-yellow-400 pl-2">FOLDERS</h3>
       <button class="mt-2 bg-gray-700 px-4 py-2 rounded text-yellow-400">Perbaikan</button>
     </div>
 
     <div class="bg-gray-800 p-4 rounded-xl">
-  <h2 class="text-lg font-bold border-l-4 border-yellow-400 pl-2 mb-2">TESTIMONI</h2>
-  <ul class="space-y-3 text-sm text-white">
-    <li><strong>Testimoni akan update tiap hari jika tidak malas</li>
-  </ul>
+      <h2 class="text-lg font-bold border-l-4 border-yellow-400 pl-2 mb-2">TESTIMONI</h2>
+      <ul class="space-y-3 text-sm text-white">
+        <li><strong>Testimoni akan update tiap hari jika tidak malas</strong></li>
+      </ul>
+      <h3 class="mt-4 font-bold border-l-4 border-yellow-400 pl-2 text-white">DISNEY</h3>
+      <div class="grid grid-cols-2 gap-3 mt-3">
+        <img src="https://telegra.ph/file/00a606141d1fa52cc2974.jpg" class="w-full h-32 object-cover rounded-md border border-yellow-400 cursor-pointer" onclick="showFull(this.src)">
+        <img src="https://telegra.ph/file/e9c2c6942292365f64e89.jpg" class="w-full h-32 object-cover rounded-md border border-yellow-400 cursor-pointer" onclick="showFull(this.src)">
+        <img src="https://telegra.ph/file/2d11be31eb62b2a3c2390.jpg" class="w-full h-32 object-cover rounded-md border border-yellow-400 cursor-pointer" onclick="showFull(this.src)">
+        <img src="https://telegra.ph/file/aadeb4690bc2d561d89ad.jpg" class="w-full h-32 object-cover rounded-md border border-yellow-400 cursor-pointer" onclick="showFull(this.src)">
+      </div>
+      <div id="imageModal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden" onclick="hideFull()">
+        <img id="modalImg" class="max-w-full max-h-full rounded-lg shadow-lg" />
+      </div>
+      <script>
+        function showFull(src) {
+          document.getElementById("modalImg").src = src;
+          document.getElementById("imageModal").classList.remove("hidden");
+        }
+        function hideFull() {
+          document.getElementById("imageModal").classList.add("hidden");
+        }
+      </script>
 
-  <h3 class="mt-4 font-bold border-l-4 border-yellow-400 pl-2 text-white">DISNEY</h3>
+      <h3 class="mt-4 font-bold border-l-4 border-yellow-400 pl-2 text-white">FOLDERS</h3>
+      <button class="mt-2 bg-gray-700 px-4 py-2 rounded text-yellow-400 hover:bg-gray-600">Perbaikan</button>
+    </div>
+  </div>
 
-<div class="grid grid-cols-2 gap-3 mt-3">
-  <!-- Gambar-gambar -->
-  <img src="https://telegra.ph/file/00a606141d1fa52cc2974.jpg" alt="Foto 1"
-       class="w-full h-32 object-cover rounded-md border border-yellow-400 cursor-pointer"
-       onclick="showFull(this.src)">
-  <img src="https://telegra.ph/file/e9c2c6942292365f64e89.jpg" alt="Foto 2"
-       class="w-full h-32 object-cover rounded-md border border-yellow-400 cursor-pointer"
-       onclick="showFull(this.src)">
-  <img src="https://telegra.ph/file/2d11be31eb62b2a3c2390.jpg" alt="Foto 3"
-       class="w-full h-32 object-cover rounded-md border border-yellow-400 cursor-pointer"
-       onclick="showFull(this.src)">
-  <img src="https://telegra.ph/file/aadeb4690bc2d561d89ad.jpg" alt="Foto 4"
-       class="w-full h-32 object-cover rounded-md border border-yellow-400 cursor-pointer"
-       onclick="showFull(this.src)">
-</div>
-
-<!-- Modal Gambar Fullscreen -->
-<div id="imageModal"
-     class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden"
-     onclick="hideFull()">
-  <img id="modalImg" class="max-w-full max-h-full rounded-lg shadow-lg" />
-</div>
-
-<script>
-  function showFull(src) {
-    document.getElementById("modalImg").src = src;
-    document.getElementById("imageModal").classList.remove("hidden");
-  }
-
-  function hideFull() {
-    document.getElementById("imageModal").classList.add("hidden");
-  }
-</script>
-
-
-  <h3 class="mt-4 font-bold border-l-4 border-yellow-400 pl-2 text-white">FOLDERS</h3>
-  <button class="mt-2 bg-gray-700 px-4 py-2 rounded text-yellow-400 hover:bg-gray-600">Perbaikan</button>
-</div>
-<!-- Audio Player (tidak terlihat) -->
+  <!-- Musik & Karakter -->
   <audio id="backgroundMusic" src="naruto.mp3" loop></audio>
+  <button id="musicBtn" onclick="toggleMusic()" class="fixed bottom-4 right-4 bg-black/40 hover:bg-black/70 text-white backdrop-blur-sm px-4 py-2 rounded-full shadow-lg z-50 transition-all duration-300 text-xl">▶️</button>
 
-  <!-- Tombol Musik Mengambang -->
-  <button id="musicBtn"
-    onclick="toggleMusic()"
-    class="fixed bottom-4 right-4 bg-black/40 hover:bg-black/70 text-white backdrop-blur-sm px-4 py-2 rounded-full shadow-lg z-50 transition-all duration-300 text-xl">
-    ▶️
-  </button>
-
-    <style>
-    .info-enter {
-      opacity: 0;
-      transform: translateX(100%);
-      transition: all 0.7s ease;
-    }
-    .info-show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .info-hide {
-      opacity: 0;
-      transform: translateX(100%);
-      transition: all 0.5s ease;
-    }
+  <style>
+    .info-enter { opacity: 0; transform: translateX(100%); transition: all 0.7s ease; }
+    .info-show { opacity: 1; transform: translateX(0); }
+    .info-hide { opacity: 0; transform: translateX(100%); transition: all 0.5s ease; }
   </style>
-</head>
-<body class="bg-gray-900 text-white h-screen relative">
-
-  <!-- Gelembung + Karakter -->
   <div id="info-bubble" class="fixed bottom-6 right-6 flex items-end space-x-2 info-enter z-50">
-    <!-- Karakter Anime -->
     <img src="narata.png" alt="Anime" class="w-16 h-16 rounded-full" />
-
-
-    <!-- Gelembung Informasi -->
     <div class="bg-white text-gray-800 text-sm px-4 py-3 rounded-lg shadow-xl max-w-xs border-l-4 border-blue-500">
       <p>✨ <strong>Hai!</strong> Kamu lagi cari disney premium plan murah? bisa langsung WhatsApp dattebayo.</p>
     </div>
   </div>
-
   <script>
     const infoBubble = document.getElementById('info-bubble');
-
-    // Muncul setelah 1 detik
-    setTimeout(() => {
-      infoBubble.classList.add('info-show');
-    }, 10000);
-
-    // Hilang setelah 6 detik
-    setTimeout(() => {
-      infoBubble.classList.remove('info-show');
-      infoBubble.classList.add('info-hide');
-    }, 16000);
-  </script>
-  
-  <!-- Script Musik -->
-  <script>
+    setTimeout(() => { infoBubble.classList.add('info-show'); }, 10000);
+    setTimeout(() => { infoBubble.classList.remove('info-show'); infoBubble.classList.add('info-hide'); }, 16000);
     const music = document.getElementById("backgroundMusic");
     const musicBtn = document.getElementById("musicBtn");
     let isPlaying = false;
-
     function toggleMusic() {
       if (isPlaying) {
         music.pause();
@@ -289,6 +209,6 @@
       isPlaying = !isPlaying;
     }
   </script>
-  </div>
 </body>
 </html>
+
