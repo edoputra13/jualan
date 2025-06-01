@@ -224,11 +224,11 @@
     } else {
       batteryStatus.textContent = "Perangkat tidak mendukung deteksi baterai.";
     }
-
+  </script>
+  <script>
     // Efek shuffle judul
     const shuffleElement = document.getElementById("shuffle");
     const shuffleText = "🔥 DEEPA STORE";
-    let shuffleIndex = 0;
 
     function shuffleLetters(text, iterations = 10, delay = 50) {
       let original = text;
@@ -250,8 +250,7 @@
     }
 
     setInterval(() => shuffleLetters(shuffleText), 3000);
-
-  </script>
+  <script>
 </body>
 </html>
 
