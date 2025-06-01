@@ -63,6 +63,34 @@
         }
         updateTime();
         setInterval(updateTime, 1000);
+
+
+        // Efek shuffle judul
+    const shuffleElement = document.getElementById("shuffle");
+    const shuffleText = "🔥 DEEPA STORE";
+    let shuffleIndex = 0;
+
+    function shuffleLetters(text, iterations = 10, delay = 50) {
+      let original = text;
+      let current = text.split("");
+      let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let interval = setInterval(() => {
+        for (let i = 0; i < current.length; i++) {
+          if (Math.random() > 0.5) {
+            current[i] = alphabet[Math.floor(Math.random() * alphabet.length)];
+          }
+        }
+        shuffleElement.textContent = current.join("");
+        iterations--;
+        if (iterations <= 0) {
+          clearInterval(interval);
+          shuffleElement.textContent = original;
+        }
+      }, delay);
+    }
+
+    setInterval(() => shuffleLetters(shuffleText), 3000);
+
       </script>
     </div>
 
